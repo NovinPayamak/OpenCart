@@ -1,0 +1,40 @@
+<modification>
+	<id>SMS Webservice - NovinPayamak</id>
+	<version>3.9</version>
+	<author>#</author>
+	
+	<!-- (change)-orderStatus -->
+	<file name="admin/controller/sale/order.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['entry_notify'] = $this->language->get('entry_notify');]]></search>
+			<add><![CDATA[$this->data['entry_notify_sms'] = $this->language->get('entry_notify_sms');]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/persian/sale/order.php">
+		<operation>
+			<search position="before"><![CDATA[$_['entry_notify']]]></search>
+			<add><![CDATA[$_['entry_notify_sms'] = 'مطلع کردن مشتری با پیامک:';]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/english/sale/order.php">
+		<operation>
+			<search position="before"><![CDATA[$_['entry_notify']]]></search>
+			<add><![CDATA[$_['entry_notify_sms'] = 'Customer Notified (SMS)';]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/sale/order_info.tpl">
+		<operation>
+			<search position="after" offset="1"><![CDATA[<td><input type="checkbox" name="notify" value="1" /></td>]]></search>
+			<add><![CDATA[ 
+				<tr>
+					<td><?php echo $entry_notify_sms; ?></td>
+					<td><input type="checkbox" name="notify_sms" value="1" /></td>
+				</tr>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&notify=' + encodeURIComponent($('input[name=\'notify\']').attr('checked') ? 1 : 0) + '&append=' + encodeURIComponent($('input[name=\'append\']').attr('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),]]></search>
+			<add><![CDATA[data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&notify=' + encodeURIComponent($('input[name=\'notify\']').attr('checked') ? 1 : 0) + '&notify_sms=' + encodeURIComponent($('input[name=\'notify_sms\']').attr('checked') ? 1 : 0) + '&append=' + encodeURIComponent($('input[name=\'append\']').attr('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),]]></add>
+		</operation>
+	</file>
+</modification>

@@ -1,0 +1,58 @@
+<modification>
+<id>SMS Webservice - NovinPayamak</id>
+	<version>3.9</version>
+	<author>#</author>
+	
+	<!-- (Send)-BulkSMS -->
+	<file name="admin/model/sale/order.php">
+		<operation>
+			<search position="before"><![CDATA[public function getEmailsByProductsOrdered($products, $start, $end) {]]></search>
+			<add><![CDATA[
+				public function getPhoneNumbersByProductsOrdered($products, $start, $end) {
+					$implode = array();
+					foreach ($products as $product_id) { $implode[] = "op.product_id = '" . $product_id . "'"; }
+					
+					$query = $this->db->query("SELECT DISTINCT fax,telephone FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) WHERE (" . implode(" OR ", $implode) . ") AND o.order_status_id <> '0' LIMIT " . $start . "," . $end);
+					return $query->rows;
+				}
+				
+				public function getTotalPhoneNumbersByProductsOrdered($products) {
+					$implode = array();
+					foreach ($products as $product_id) { $implode[] = "op.product_id = '" . $product_id . "'"; }
+					
+					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) WHERE (" . implode(" OR ", $implode) . ") AND o.order_status_id <> '0'");
+					return $query->row['total'];
+				}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['text_contact'] = $this->language->get('text_contact');]]></search>
+			<add><![CDATA[$this->data['text_contact_sms'] = $this->language->get('text_contact_sms');]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$this->data['contact'] = $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+			<add><![CDATA[$this->data['contact_sms'] = $this->url->link('sale/contact_sms', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/header.tpl">
+		<operation>
+			<search position="after"><![CDATA[<li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>]]></search>
+			<add><![CDATA[<li><a href="<?php echo $contact_sms; ?>"><?php echo $text_contact_sms; ?></a></li>]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/english/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$_['text_contact']]]></search>
+			<add><![CDATA[$_['text_contact_sms'] = 'ShortMessage';]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/persian/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$_['text_contact']]]></search>
+			<add><![CDATA[$_['text_contact_sms'] = 'پیام کوتاه';]]></add>
+		</operation>
+	</file>
+</modification>

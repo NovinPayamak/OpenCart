@@ -1,0 +1,133 @@
+<modification>
+	<id>SMS Webservice - NovinPayamak</id>
+	<version>3.9</version>
+	<author>#</author>
+	
+	<!-- system/startup -->
+	<file name="system/startup.php">
+		<operation>
+			<search position="before"><![CDATA[// Helper]]></search>
+			<add><![CDATA[define('WS_PAYAMAK_FIELD', 'fax');]]></add>
+		</operation>
+	</file>
+	
+	<!-- sale/order -->
+	<file name="admin/language/persian/sale/order.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$_['text_fax']]]></search>
+			<add><![CDATA[$_['text_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/english/sale/order.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$_['text_fax']]]></search>
+			<add><![CDATA[$_['text_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+	
+	<!-- sale/customer -->
+	<file name="admin/language/persian/sale/customer.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/english/sale/customer.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+	
+	<!-- sale/affiliate -->
+	<file name="admin/language/persian/sale/affiliate.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/english/sale/affiliate.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+	
+	<!-- affiliate/register -->
+	<file name="catalog/language/persian/affiliate/register.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/affiliate/register.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+	
+	<!-- affiliate/edit -->
+	<file name="catalog/language/persian/affiliate/edit.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/affiliate/edit.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+	
+	<!-- account/register -->
+	<file name="catalog/language/persian/account/register.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/account/register.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+	
+	<!-- account/edit -->
+	<file name="catalog/language/persian/account/edit.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/account/edit.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+	
+	<!-- checkout/checkout -->
+	<file name="catalog/language/persian/checkout/checkout.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'تلفن همراه:';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/checkout/checkout.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_fax']]]></search>
+			<add><![CDATA[$_['entry_' . WS_PAYAMAK_FIELD] = 'Phone Number:';]]></add>
+		</operation>
+	</file>
+</modification>
