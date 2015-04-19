@@ -9,7 +9,7 @@ final class SmsLink_3 { /* Sinet ... */
 	}
 	
 	public function Connect() {
-		$this->data['Proxy'] = new SoapClient("http://" . $this->data['Config']['SiteUrl'] . "/post/send.asmx?wsdl");
+		$this->data['Proxy'] = new SoapClient("http://www.novinpayamak.com/services/SMSBox/wsdl");
 	}
 	
 	public function GetCredit() {
@@ -39,6 +39,11 @@ final class SmsLink_3 { /* Sinet ... */
 		$params['udh'] = "";
     	$params['recId'] = array(0);
     	$params['status'] = 0x0;	
+    	$params['Auth'] = array('number' => $this->data['Config']['UserName'],'pass' => $this->data['Config']['UserPassword']);	
+    	$params['Recipients'] = $to;	
+    	$params['Message'] = array($message);
+		$flash = false;		
+    	$params['Flash'] = $flash;	
 		$client = new SoapClient('http://www.novinpayamak.com/services/SMSBox/wsdl', array('encoding' => 'UTF-8'));
 		$flash = false;
 		$res = $client->Send(
@@ -53,7 +58,7 @@ final class SmsLink_3 { /* Sinet ... */
 		$this->Connect();
 		$this->data['Calls']['SendSms'] = $this->data['Proxy']->Send($params);
 		
-		switch($this->data['Calls']['SendSms']->Status) {
+		switch($res->Status) {
 			case '-11' : $this->errors[] = 'اطلاعات ارسال شده ناقص است و يا فرمت ورودي صحيح نيست.'; break;
 			case '-22' : $this->errors[] = 'اطلاعات احراز هويت نا معتبر مي باشد.'; break;
 			case '-33' : $this->errors[] = 'اعتبار مجازي وب سرويس كافي نمي باشد.'; break;

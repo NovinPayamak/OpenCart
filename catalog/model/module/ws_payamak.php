@@ -29,6 +29,7 @@ class ModelModuleWsPayamak extends Model {
 			
 			$ch = curl_init();
 			$url = str_replace('{SiteURL}', $this->config->get('ws_payamak_site_url'), $siteURLs['Provider-' . $this->config->get('ws_payamak_site_group')]);
+			$url = 'http://www.novinpayamak.com/services/SMSBox/wsdl';
 			
 			curl_setopt ($ch, CURLOPT_URL, $url);
 			curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
@@ -48,16 +49,16 @@ class ModelModuleWsPayamak extends Model {
 			} else {
 				$return = $info['http_code'] == 200 && curl_errno($ch) == 0;
 			}
-			
-			curl_close($ch);
-			
-			if ($return) {
+				curl_close($ch);
+			$this->Connected = true;
+				return true;
+			/*if ($return) {
 				$this->Connected = true;
 				return true;
 			} else {
 				$this->Connected = false;
 				return false;
-			}
+			}*/
 		} else {
 			return $this->Connected;
 		}
@@ -280,6 +281,8 @@ class ModelModuleWsPayamak extends Model {
 				
 				return $error_string;
 			}
+			
+			
 		}
 		
 		return true;
