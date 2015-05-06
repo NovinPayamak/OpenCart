@@ -56,7 +56,7 @@ final class SmsLink_3 { /* Sinet ... */
 			);
 		
 		$this->Connect();
-		$this->data['Calls']['SendSms'] = $this->data['Proxy']->Send($params);
+		$this->data['Calls']['SendSms'] = $res;
 		
 		switch($res->Status) {
 			case '-11' : $this->errors[] = 'اطلاعات ارسال شده ناقص است و يا فرمت ورودي صحيح نيست.'; break;
